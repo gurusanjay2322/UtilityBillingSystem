@@ -1,35 +1,122 @@
 {% extends 'base.html' %} {% block title %}Contact{% endblock title %}
 {% block body %}
-<div class="container-fluid px-0 mb-3">
-    <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <img src="/static/img/phone1.jfif" class="d-block w-100" alt="...">
+
+<!-- contact form -->
+
+<style>
+    body {
+        color: #ffffff
+    }
+
+    .box {
+        margin: auto
+    }
+
+    .card {
+        padding: 8%;
+        padding-top: 35px;
+        margin-top: 60px;
+        margin-bottom: 80px
+    }
+
+    textarea[name="message"] {
+        resize: none
+    }
+
+    #e-mail {
+        height: 45px
+    }
+
+    #message {
+        height: 120px
+    }
+
+    input.input-box,
+    textarea.input-box {
+        background-color: rgba(9, 25, 43, 90%);
+        border: #616161;
+        color: #BDBDBD
+    }
+
+    input.input-box:focus,
+    textarea.input-box:focus {
+        background-color: rgba(9, 25, 43, 90%);
+        color: #BDBDBD
+    }
+
+    .rm-border:focus {
+        border-color: inherit;
+        -webkit-box-shadow: none;
+        box-shadow: none
+    }
+
+    form .form-control::-webkit-input-placeholder {
+        color: #9E9E9E
+    }
+
+    ::-moz-placeholder {
+        color: #9E9E9E !important
+    }
+
+    input.btn-purple {
+        background-color: #5C6BC0;
+        color: #ffffff
+    }
+
+    .card {
+        background-color: rgba(9, 25, 43, 90%);
+    }
+    .btn{
+        border: 2px solid rgba(9, 25, 43, 90%);
+        color: #F7C873;
+        
+    }
+    .btn:hover{
+        background-color: rgba(9, 25, 43, 90%);
+    }
+</style>
+
+<div class="bg">
+    <div class="container">
+        <div class="row justify justify-content-center">
+            <div class="col-11 col-md-8 col-lg-6 col-xl-5">
+                <form class="" method="post" action="/contact">
+                {% csrf_token %}
+                    <div class="card">
+                        <div class="row mt-0">
+                            <div class="col-md-12 ">
+                                <h4 class="">Contact Us</h4>
+                                <p>Use the form below to share your questions, ideas, comments and feedback</p>
+                            </div>
+                            <div class="form-group row mb-3">
+                                <div class="col-md-12 mb-0">
+                                    <p class="mb-1">Name</p> 
+                                    <input id="name" type="text"
+                                        placeholder="Enter your Name" name="name"
+                                        class="form-control input-box rm-border" required>
+                                </div>
+                                <div class="col-md-12 mb-0">
+                                    <p class="mb-1">Email</p> 
+                                    <input id="e-mail" type="text"
+                                        placeholder="Enter your email" name="email"
+                                        class="form-control input-box rm-border" required>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-12 mb-2">
+                                    <p class="mb-1">Message</p> 
+                                    <textarea id="message" type="text" placeholder="Enter your message" name="message" class="form-control input-box rm-border" required></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group row justify-content-center mb-0">
+                                <div class="col-md-12 px-3" style="color: #F7C873;"> <input type="submit" value="Submit"
+                                        class="btn btn-block rm-border"/> </div>
+                            </div>
+                        </div>
+                </form>
             </div>
         </div>
     </div>
 </div>
-<h1 class="text-center">CONTACT US</h1>
-<form method="post" action="/contact">
-    {% csrf_token %}
-<div class="container py-4">
-        <div class="form-floating mb-3">
-            <input type="text" class="form-control" id="name" name="name" placeholder="Your name here">
-            <label for="name">Your Name</label>
-        </div>
-        <div class="form-floating mb-3">
-            <input type="email" class="form-control" id="Email" name="email" placeholder="name@example.com">
-            <label for="floatingInput">Email address</label>
-        </div>
-        <div class="form-floating mb-3">
-            <input type="number" class="form-control" id="Phone" name="phoneno" placeholder="Must be 10 digit">
-            <label for="floatingInput">Phone number</label>
-        </div>
-        <div class="form-floating mb-3">
-            <textarea class="form-control" name="query" placeholder="Ask anything" id="query" style="height: 100px"></textarea>
-            <label for="floatingTextarea2">Queries</label>
-        </div>
-        <button class="btn btn-primary" type="submit">submit</button>
-</div>
-</form>
+
 {% endblock body %}
